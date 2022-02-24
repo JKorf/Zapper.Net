@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using CryptoExchange.Net.Objects;
 using Zapper.Net.Interfaces.Clients.Api;
+using Zapper.Net.Objects.Models;
 
 namespace Zapper.Net.Clients.Api
 {
@@ -18,7 +19,7 @@ namespace Zapper.Net.Clients.Api
             _baseClient = baseClient;
         }
 
-        public Task<WebCallResult<string>> GetBalancesAsync(string address, CancellationToken ct = default)
+        public Task<WebCallResult<ZapperBalances>> GetBalancesAsync(string address, CancellationToken ct = default)
         {
             var parameters = new Dictionary<string, object>()
             {
@@ -26,7 +27,7 @@ namespace Zapper.Net.Clients.Api
                 { "api_key", "96e0cc51-a62e-42ca-acee-910ea7d2a241" }
             };
 
-            return _baseClient.SendRequestInternal<string>(_baseClient.GetUrl("v1/balances-v3"), HttpMethod.Get, ct, parameters, false);
+            return _baseClient.SendRequestInternal<ZapperBalances>(_baseClient.GetUrl("v1/balances-v3"), HttpMethod.Get, ct, parameters, false, sseEndpoint: true);
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using CryptoExchange.Net;
 using CryptoExchange.Net.Authentication;
+using CryptoExchange.Net.DataProcessors;
 using CryptoExchange.Net.Logging;
 using CryptoExchange.Net.Objects;
 using Zapper.Net.Interfaces.Clients.Api;
@@ -31,7 +32,7 @@ namespace Zapper.Net.Clients.Api
         #endregion
 
         #region constructor/destructor
-        internal ZapperClientApi(Log log, ZapperClient baseClient, ZapperClientOptions options) : base(options, options.ApiOptions)
+        internal ZapperClientApi(Log log, ZapperClient baseClient, ZapperClientOptions options, IDataProcessor dataProcessor) : base(options, options.ApiOptions, dataProcessor)
         {
             Options = options;
             _log = log;
@@ -63,9 +64,9 @@ namespace Zapper.Net.Clients.Api
 
         internal async Task<WebCallResult<T>> SendRequestInternal<T>(Uri uri, HttpMethod method, CancellationToken cancellationToken,
             Dictionary<string, object>? parameters = null, bool signed = false, HttpMethodParameterPosition? postPosition = null,
-            ArrayParametersSerialization? arraySerialization = null, int weight = 1) where T : class
+            ArrayParametersSerialization? arraySerialization = null, int weight = 1, bool sseEndpoint = false) where T : class
         {
-            return await _baseClient.SendRequestInternal<T>(this, uri, method, cancellationToken, parameters, signed, postPosition, arraySerialization, weight).ConfigureAwait(false);
+            return await _baseClient.SendRequestInternal<T>(this, uri, method, cancellationToken, parameters, signed, postPosition, arraySerialization, weight, sseEndpoint).ConfigureAwait(false);
         }
     }
 }

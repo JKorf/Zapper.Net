@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using CryptoExchange.Net;
+using CryptoExchange.Net.DataProcessors;
 using CryptoExchange.Net.Objects;
+using Newtonsoft.Json;
 using Zapper.Net.Clients.Api;
 using Zapper.Net.Interfaces.Clients;
 using Zapper.Net.Interfaces.Clients.Api;
@@ -19,7 +22,19 @@ namespace Zapper.Net
         /// <inheritdoc />
         public IZapperClientApi Api { get; }
 
+        private readonly SSEJsonDataProcessor _sseProcessor;
+
         #endregion
+
+
+        /// <summary>
+        /// A default serializer
+        /// </summary>
+        private static readonly JsonSerializer defaultSerializer = JsonSerializer.Create(new JsonSerializerSettings
+        {
+            DateTimeZoneHandling = DateTimeZoneHandling.Utc,
+            Culture = CultureInfo.InvariantCulture
+        });
 
         #region constructor/destructor
         /// <summary>
@@ -35,19 +50,26 @@ namespace Zapper.Net
         /// <param name="options">The options to use for this client</param>
         public ZapperClient(ZapperClientOptions options) : base("Zapper", options)
         {
-            Api = AddApiClient(new ZapperClientApi(log, this, options));
+            Api = AddApiClient(new ZapperClientApi(log, this, options, new JsonDataProcessor(log, CheckErrorAsync, defaultSerializer)));
 
+            manualParseError = true;
             requestBodyEmptyContent = "";
             requestBodyFormat = RequestBodyFormat.FormData;
             arraySerialization = ArrayParametersSerialization.MultipleValues;
+            _sseProcessor = new SSEJsonDataProcessor(log, CheckErrorAsync, defaultSerializer);
         }
         #endregion
 
         internal Task<WebCallResult<T>> SendRequestInternal<T>(RestApiClient apiClient, Uri uri, HttpMethod method, CancellationToken cancellationToken,
             Dictionary<string, object>? parameters = null, bool signed = false, HttpMethodParameterPosition? postPosition = null,
-            ArrayParametersSerialization? arraySerialization = null, int weight = 1) where T : class
+            ArrayParametersSerialization? arraySerialization = null, int weight = 1, bool sseEndpoint = false) where T : class
         {
-            return base.SendRequestAsync<T>(apiClient, uri, method, cancellationToken, parameters, signed, postPosition, arraySerialization, requestWeight: weight);
+            return base.SendRequestAsync<T>(apiClient, uri, method, cancellationToken, parameters, signed, postPosition, arraySerialization, requestWeight: weight, processor: sseEndpoint ? _sseProcessor: null);
+        }
+
+        private Task<ServerError?> CheckErrorAsync(string data)
+        {
+            return Task.FromResult<ServerError?>(null);
         }
     }
 }
