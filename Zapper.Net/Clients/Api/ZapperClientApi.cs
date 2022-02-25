@@ -32,7 +32,7 @@ namespace Zapper.Net.Clients.Api
         #endregion
 
         #region constructor/destructor
-        internal ZapperClientApi(Log log, ZapperClient baseClient, ZapperClientOptions options, IDataProcessor dataProcessor) : base(options, options.ApiOptions, dataProcessor)
+        internal ZapperClientApi(Log log, ZapperClient baseClient, ZapperClientOptions options, IDataConverter dataConverter) : base(options, options.ApiOptions, dataConverter)
         {
             Options = options;
             _log = log;
@@ -55,7 +55,7 @@ namespace Zapper.Net.Clients.Api
             Task.FromResult(new WebCallResult<DateTime>(null, null, null, null, null, null, null, null, DateTime.UtcNow, null));
 
         protected override TimeSyncInfo GetTimeSyncInfo()
-            => new TimeSyncInfo(_log, false, new TimeSyncState { LastSyncTime = DateTime.UtcNow } );
+            => new TimeSyncInfo(_log, Options.ApiOptions.AutoTimestamp, Options.ApiOptions.TimestampRecalculationInterval, new TimeSyncState { LastSyncTime = DateTime.UtcNow } );
 
         internal Uri GetUrl(string endpoint)
         {

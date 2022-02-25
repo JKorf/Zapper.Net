@@ -22,10 +22,9 @@ namespace Zapper.Net
         /// <inheritdoc />
         public IZapperClientApi Api { get; }
 
-        private readonly SSEJsonDataProcessor _sseProcessor;
+        private readonly SSEJsonDataConverter _sseProcessor;
 
         #endregion
-
 
         /// <summary>
         /// A default serializer
@@ -50,13 +49,13 @@ namespace Zapper.Net
         /// <param name="options">The options to use for this client</param>
         public ZapperClient(ZapperClientOptions options) : base("Zapper", options)
         {
-            Api = AddApiClient(new ZapperClientApi(log, this, options, new JsonDataProcessor(log, CheckErrorAsync, defaultSerializer)));
+            Api = AddApiClient(new ZapperClientApi(log, this, options, new JsonDataConverter(log, defaultSerializer)));
 
             manualParseError = true;
             requestBodyEmptyContent = "";
             requestBodyFormat = RequestBodyFormat.FormData;
             arraySerialization = ArrayParametersSerialization.MultipleValues;
-            _sseProcessor = new SSEJsonDataProcessor(log, CheckErrorAsync, defaultSerializer);
+            _sseProcessor = new SSEJsonDataConverter(log, defaultSerializer);
         }
         #endregion
 
@@ -64,12 +63,7 @@ namespace Zapper.Net
             Dictionary<string, object>? parameters = null, bool signed = false, HttpMethodParameterPosition? postPosition = null,
             ArrayParametersSerialization? arraySerialization = null, int weight = 1, bool sseEndpoint = false) where T : class
         {
-            return base.SendRequestAsync<T>(apiClient, uri, method, cancellationToken, parameters, signed, postPosition, arraySerialization, requestWeight: weight, processor: sseEndpoint ? _sseProcessor: null);
-        }
-
-        private Task<ServerError?> CheckErrorAsync(string data)
-        {
-            return Task.FromResult<ServerError?>(null);
+            return base.SendRequestAsync<T>(apiClient, uri, method, cancellationToken, parameters, signed, postPosition, arraySerialization, requestWeight: weight, converter: sseEndpoint ? _sseProcessor: null);
         }
     }
 }

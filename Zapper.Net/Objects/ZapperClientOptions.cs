@@ -9,7 +9,7 @@ namespace Zapper.Net.Objects
     {
         public static ZapperClientOptions Default { get; set; } = new ZapperClientOptions();
 
-        private readonly RestApiClientOptions _apiOptions = new RestApiClientOptions("https://api.zapper.fi/");
+        private RestApiClientOptions _apiOptions = new RestApiClientOptions("https://api.zapper.fi/");
 
         /// <summary>
         /// API options
@@ -17,31 +17,22 @@ namespace Zapper.Net.Objects
         public RestApiClientOptions ApiOptions
         {
             get => _apiOptions;
-            set => _apiOptions.Copy(_apiOptions, value);
+            set => _apiOptions = new RestApiClientOptions(_apiOptions, value);
         }
 
         /// <summary>
         /// ctor
         /// </summary>
-        public ZapperClientOptions()
+        public ZapperClientOptions(): this(Default)
         {
-            if (Default == null)
-                return;
-
-            Copy(this, Default);
         }
 
-        /// <summary>
-        /// Copy the values of the def to the input
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="input"></param>
-        /// <param name="def"></param>
-        public new void Copy<T>(T input, T def) where T : ZapperClientOptions
+        public ZapperClientOptions(ZapperClientOptions baseOn): base(baseOn)
         {
-            base.Copy(input, def);
+            if (baseOn == null)
+                return;
 
-            input.ApiOptions = new RestApiClientOptions(def.ApiOptions);
+            ApiOptions = new RestApiClientOptions(baseOn.ApiOptions, null);
         }
     }
 }
