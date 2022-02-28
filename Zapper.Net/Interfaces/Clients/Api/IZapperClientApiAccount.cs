@@ -10,6 +10,8 @@ namespace Zapper.Net.Interfaces.Clients.Api
 {
     public interface IZapperClientApiAccount
     {
+        Task<WebCallResult<Dictionary<string, ZapperAppBalance>>> GetAppBalancesAsync(string appId, string address, string? network = null, CancellationToken ct = default);
         Task<WebCallResult<ZapperBalances>> GetBalancesAsync(string address, CancellationToken ct = default);
+        Task<WebCallResult<Dictionary<string, object>>> GetStakedBalancesAsync(string balanceType, string address, string? network = null, CancellationToken ct = default);
     }
 }
