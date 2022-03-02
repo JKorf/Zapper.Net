@@ -4,10 +4,9 @@ using System.Text;
 
 namespace Zapper.Net.Objects.Models
 {
-    public class ZapperAppBalance
+    public class ZapperAppBalance: ZapperModel
     {
         public IEnumerable<ZapperAppBalanceMeta> Meta { get; set; }
-
         public IEnumerable<ZapperProduct> Products { get; set; }
     }
 

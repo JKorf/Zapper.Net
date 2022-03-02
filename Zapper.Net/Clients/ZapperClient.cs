@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using CryptoExchange.Net;
-using CryptoExchange.Net.DataProcessors;
 using CryptoExchange.Net.Objects;
-using Newtonsoft.Json;
 using Zapper.Net.Clients.Api;
 using Zapper.Net.Interfaces.Clients;
 using Zapper.Net.Interfaces.Clients.Api;
@@ -15,6 +12,7 @@ using Zapper.Net.Objects;
 
 namespace Zapper.Net
 {
+    /// <inheritdoc />
     public class ZapperClient: BaseRestClient, IZapperClient
     {
         #region Api clients
@@ -22,18 +20,7 @@ namespace Zapper.Net
         /// <inheritdoc />
         public IZapperClientApi Api { get; }
 
-        private readonly SSEJsonDataConverter _sseProcessor;
-
         #endregion
-
-        /// <summary>
-        /// A default serializer
-        /// </summary>
-        private static readonly JsonSerializer defaultSerializer = JsonSerializer.Create(new JsonSerializerSettings
-        {
-            DateTimeZoneHandling = DateTimeZoneHandling.Utc,
-            Culture = CultureInfo.InvariantCulture
-        });
 
         #region constructor/destructor
         /// <summary>
@@ -49,21 +36,29 @@ namespace Zapper.Net
         /// <param name="options">The options to use for this client</param>
         public ZapperClient(ZapperClientOptions options) : base("Zapper", options)
         {
-            Api = AddApiClient(new ZapperClientApi(log, this, options, new JsonDataConverter(log, defaultSerializer)));
+            Api = AddApiClient(new ZapperClientApi(log, this, options));
 
             manualParseError = true;
             requestBodyEmptyContent = "";
             requestBodyFormat = RequestBodyFormat.FormData;
             arraySerialization = ArrayParametersSerialization.MultipleValues;
-            _sseProcessor = new SSEJsonDataConverter(log, defaultSerializer);
         }
         #endregion
 
+        /// <summary>
+        /// Set the default options to be used when creating new clients
+        /// </summary>
+        /// <param name="options">Options to use as default</param>
+        public static void SetDefaultOptions(ZapperClientOptions options)
+        {
+            ZapperClientOptions.Default = options;
+        }
+
         internal Task<WebCallResult<T>> SendRequestInternal<T>(RestApiClient apiClient, Uri uri, HttpMethod method, CancellationToken cancellationToken,
             Dictionary<string, object>? parameters = null, bool signed = false, HttpMethodParameterPosition? postPosition = null,
-            ArrayParametersSerialization? arraySerialization = null, int weight = 1, bool sseEndpoint = false) where T : class
+            ArrayParametersSerialization? arraySerialization = null, int weight = 1) where T : class
         {
-            return base.SendRequestAsync<T>(apiClient, uri, method, cancellationToken, parameters, signed, postPosition, arraySerialization, requestWeight: weight, converter: sseEndpoint ? _sseProcessor: null);
+            return base.SendRequestAsync<T>(apiClient, uri, method, cancellationToken, parameters, signed, postPosition, arraySerialization, requestWeight: weight);
         }
     }
 }
