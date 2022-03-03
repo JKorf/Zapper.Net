@@ -1,0 +1,871 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Zapper.Net</name>
+    </assembly>
+    <members>
+        <member name="P:Zapper.Net.Clients.Api.ZapperClientApi.AddressData">
+            <inheritdoc />
+        </member>
+        <member name="P:Zapper.Net.Clients.Api.ZapperClientApi.GeneralData">
+            <inheritdoc />
+        </member>
+        <member name="T:Zapper.Net.ZapperClient">
+            <inheritdoc />
+        </member>
+        <member name="P:Zapper.Net.ZapperClient.Api">
+            <inheritdoc />
+        </member>
+        <member name="M:Zapper.Net.ZapperClient.#ctor">
+            <summary>
+            Create a new instance of BinanceClient using the default options
+            </summary>
+        </member>
+        <member name="M:Zapper.Net.ZapperClient.#ctor(Zapper.Net.Objects.ZapperClientOptions)">
+            <summary>
+            Create a new instance of BinanceClient using provided options
+            </summary>
+            <param name="options">The options to use for this client</param>
+        </member>
+        <member name="M:Zapper.Net.ZapperClient.SetDefaultOptions(Zapper.Net.Objects.ZapperClientOptions)">
+            <summary>
+            Set the default options to be used when creating new clients
+            </summary>
+            <param name="options">Options to use as default</param>
+        </member>
+        <member name="T:Zapper.Net.Interfaces.Clients.Api.IZapperClientApi">
+            <summary>
+            Zapper API endpoints
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Interfaces.Clients.Api.IZapperClientApi.AddressData">
+            <summary>
+            Endpoints related to a specific address
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Interfaces.Clients.Api.IZapperClientApi.GeneralData">
+            <summary>
+            General data endpoints
+            </summary>
+        </member>
+        <member name="T:Zapper.Net.Interfaces.Clients.Api.IZapperClientApiAddressData">
+            <summary>
+            Endpoints related to a specific address
+            </summary>
+        </member>
+        <member name="M:Zapper.Net.Interfaces.Clients.Api.IZapperClientApiAddressData.GetSupportedAppBalancesAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get apps which support the GetAppBalancesAsync endpoint
+            </summary>
+            <param name="address">Address</param>
+            <param name="ct">Cancelation token</param>
+            <returns></returns>
+        </member>
+        <member name="M:Zapper.Net.Interfaces.Clients.Api.IZapperClientApiAddressData.GetSupportedAppBalancesAsync(System.Collections.Generic.IEnumerable{System.String},System.Threading.CancellationToken)">
+            <summary>
+            Get apps which support the GetAppBalancesAsync endpoint
+            </summary>
+            <param name="addresses">Addresses</param>
+            <param name="ct">Cancelation token</param>
+            <returns></returns>
+        </member>
+        <member name="M:Zapper.Net.Interfaces.Clients.Api.IZapperClientApiAddressData.GetAppBalancesAsync(System.String,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get balances for an app
+            </summary>
+            <param name="appId">The id of the app to retrieve balances for (`tokens` for token info)</param>
+            <param name="address">Address to retrieve balances for</param>
+            <param name="network">Filter by network</param>
+            <param name="ct">Cancelation token</param>
+            <returns></returns>
+        </member>
+        <member name="M:Zapper.Net.Interfaces.Clients.Api.IZapperClientApiAddressData.GetAppBalancesAsync(System.String,System.Collections.Generic.IEnumerable{System.String},System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get balances for an app
+            </summary>
+            <param name="appId">The id of the app to retrieve balances for (`tokens` for token info)</param>
+            <param name="addresses">Addresses to retrieve balances for</param>
+            <param name="network">Filter by network</param>
+            <param name="ct">Cancelation token</param>
+            <returns></returns>
+        </member>
+        <member name="M:Zapper.Net.Interfaces.Clients.Api.IZapperClientApiAddressData.GetTransactionsAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get transaction history for an address
+            </summary>
+            <param name="address">The address to retrieve history for</param>
+            <param name="ct">Cancelation token</param>
+            <returns></returns>
+        </member>
+        <member name="T:Zapper.Net.Interfaces.Clients.Api.IZapperClientApiGeneralData">
+            <summary>
+            General data endpoints
+            </summary>
+        </member>
+        <member name="M:Zapper.Net.Interfaces.Clients.Api.IZapperClientApiGeneralData.GetUsdPricesAsync(System.Threading.CancellationToken)">
+            <summary>
+            Get USD - fiat prices in the form of [1 dollar = X asset]
+            </summary>
+            <param name="ct">Cancelation token</param>
+            <returns></returns>
+        </member>
+        <member name="M:Zapper.Net.Interfaces.Clients.Api.IZapperClientApiGeneralData.GetPricesAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get token prices in USD
+            </summary>
+            <param name="network">Filter by network</param>
+            <param name="ct">Cancelation token</param>
+            <returns></returns>
+        </member>
+        <member name="M:Zapper.Net.Interfaces.Clients.Api.IZapperClientApiGeneralData.GetPriceStatsAsync(System.String,System.String,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get price statistics for a token address
+            </summary>
+            <param name="tokenAddress">The address of the token</param>
+            <param name="network"></param>
+            <param name="timeFrame">The time frame for which to give the price history</param>
+            <param name="currency">The currency in which to return the price history</param>
+            <param name="ct">Cancelation token</param>
+            <returns></returns>
+        </member>
+        <member name="M:Zapper.Net.Interfaces.Clients.Api.IZapperClientApiGeneralData.GetTokenListAsync(System.Threading.CancellationToken)">
+            <summary>
+            Get a list of supported tokens
+            </summary>
+            <param name="ct">Cancelation token</param>
+            <returns></returns>
+        </member>
+        <member name="M:Zapper.Net.Interfaces.Clients.Api.IZapperClientApiGeneralData.GetAppsAsync(System.Threading.CancellationToken)">
+            <summary>
+            Get a list of supported apps
+            </summary>
+            <param name="ct">Cancelation token</param>
+            <returns></returns>
+        </member>
+        <member name="M:Zapper.Net.Interfaces.Clients.Api.IZapperClientApiGeneralData.GetAppAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get an app by id
+            </summary>
+            <param name="appId">The id of the app to retrieve</param>
+            <param name="ct">Cancelation token</param>
+            <returns></returns>
+        </member>
+        <member name="M:Zapper.Net.Interfaces.Clients.Api.IZapperClientApiGeneralData.GetFarmStatsAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get farm statistics
+            </summary>
+            <param name="farmStatsType">Farm stats type</param>
+            <param name="network">Filter by network</param>
+            <param name="ct">Cancelation token</param>
+            <returns></returns>
+        </member>
+        <member name="T:Zapper.Net.Interfaces.Clients.IZapperClient">
+            <summary>
+            Client for accessing the Zapper API
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Interfaces.Clients.IZapperClient.Api">
+            <summary>
+            Api endpoints
+            </summary>
+        </member>
+        <member name="T:Zapper.Net.Objects.Models.ZapperApp">
+            <summary>
+            Zapper App
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperApp.Id">
+            <summary>
+            Id of the app
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperApp.Tags">
+            <summary>
+            Tags for app
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperApp.Name">
+            <summary>
+            Name of the app
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperApp.Url">
+            <summary>
+            URL to app homepage
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperApp.SupportedNetworks">
+            <summary>
+            Supported networks
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperApp.Groups">
+            <summary>
+            Groups
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperApp.PrimaryColor">
+            <summary>
+            Primary color code
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperApp.Token">
+            <summary>
+            App token info
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperApp.CompatibleAddressFormats">
+            <summary>
+            Compatible address formats
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperApp.Disabled">
+            <summary>
+            Is disabled
+            </summary>
+        </member>
+        <member name="T:Zapper.Net.Objects.Models.ZapperAppBalance">
+            <summary>
+            App balance info
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperAppBalance.Meta">
+            <summary>
+            Meta info on the balances
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperAppBalance.Products">
+            <summary>
+            Products
+            </summary>
+        </member>
+        <member name="T:Zapper.Net.Objects.Models.ZapperProduct">
+            <summary>
+            Product info
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperProduct.Label">
+            <summary>
+            Label
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperProduct.Assets">
+            <summary>
+            Assets list
+            </summary>
+        </member>
+        <member name="T:Zapper.Net.Objects.Models.ZapperProductAssets">
+            <summary>
+            Asset info
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperProductAssets.Type">
+            <summary>
+            Asset type
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperProductAssets.Network">
+            <summary>
+            Network
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperProductAssets.Address">
+            <summary>
+            Address
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperProductAssets.Decimals">
+            <summary>
+            Max decimal places
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperProductAssets.Symbol">
+            <summary>
+            Symbol
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperProductAssets.Price">
+            <summary>
+            Price
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperProductAssets.Balance">
+            <summary>
+            Balance
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperProductAssets.BalanceRaw">
+            <summary>
+            Balance raw
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperProductAssets.BalanceUsd">
+            <summary>
+            Balance in USD value
+            </summary>
+        </member>
+        <member name="T:Zapper.Net.Objects.Models.ZapperAppBalanceMeta">
+            <summary>
+            Blance meta data
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperAppBalanceMeta.Label">
+            <summary>
+            Label
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperAppBalanceMeta.Value">
+            <summary>
+            Balance value
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperAppBalanceMeta.Type">
+            <summary>
+            Balance type
+            </summary>
+        </member>
+        <member name="T:Zapper.Net.Objects.Models.ZapperAppNetwork">
+            <summary>
+            App network
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperAppNetwork.Network">
+            <summary>
+            Network name
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperAppNetwork.Actions">
+            <summary>
+            Actions
+            </summary>
+        </member>
+        <member name="T:Zapper.Net.Objects.Models.ZapperAppToken">
+            <summary>
+            App token
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperAppToken.Address">
+            <summary>
+            Token address
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperAppToken.Network">
+            <summary>
+            Network
+            </summary>
+        </member>
+        <member name="T:Zapper.Net.Objects.Models.ZapperFarmStats">
+            <summary>
+            Farm stats
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperFarmStats.PoolIndex">
+            <summary>
+            Pool index
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperFarmStats.StakingStrategy">
+            <summary>
+            Staking strategy
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperFarmStats.FarmName">
+            <summary>
+            Farm name
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperFarmStats.RewardAddress">
+            <summary>
+            Rewards address
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperFarmStats.TokenAddress">
+            <summary>
+            Token address
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperFarmStats.IsActive">
+            <summary>
+            Is active
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperFarmStats.Label">
+            <summary>
+            Label
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperFarmStats.AppId">
+            <summary>
+            App id
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperFarmStats.DailyROI">
+            <summary>
+            Daily ROI
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperFarmStats.WeeklyROI">
+            <summary>
+            Weekly ROI
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperFarmStats.YearlyROI">
+            <summary>
+            Yearly ROI
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperFarmStats.ValueLockedUSD">
+            <summary>
+            Lock USD value
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperFarmStats.RewardTokens">
+            <summary>
+            Reward tokens info
+            </summary>
+        </member>
+        <member name="T:Zapper.Net.Objects.Models.ZapperRewardToken">
+            <summary>
+            Reward token info
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperRewardToken.Address">
+            <summary>
+            Address
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperRewardToken.Decimals">
+            <summary>
+            Max amount of decimal places
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperRewardToken.Symbol">
+            <summary>
+            Symbol
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperRewardToken.Price">
+            <summary>
+            Price
+            </summary>
+        </member>
+        <member name="T:Zapper.Net.Objects.Models.ZapperModel">
+            <summary>
+            Base zapper model
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperModel.Error">
+            <summary>
+            Error info
+            </summary>
+        </member>
+        <member name="T:Zapper.Net.Objects.Models.ZapperNetworkAppList">
+            <summary>
+            Network app list
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperNetworkAppList.Network">
+            <summary>
+            Network
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperNetworkAppList.Apps">
+            <summary>
+            App list
+            </summary>
+        </member>
+        <member name="T:Zapper.Net.Objects.Models.ZapperNetworkApp">
+            <summary>
+            Network app info
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperNetworkApp.AppId">
+            <summary>
+            App id
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperNetworkApp.Meta">
+            <summary>
+            Meta data
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperNetworkApp.Addresses">
+            <summary>
+            Addresses
+            </summary>
+        </member>
+        <member name="T:Zapper.Net.Objects.Models.ZapperNetworkAppMeta">
+            <summary>
+            App meta data
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperNetworkAppMeta.Label">
+            <summary>
+            Label
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperNetworkAppMeta.Image">
+            <summary>
+            Image url
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperNetworkAppMeta.SupportedActions">
+            <summary>
+            Supported actions
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperNetworkAppMeta.Tags">
+            <summary>
+            Tags
+            </summary>
+        </member>
+        <member name="T:Zapper.Net.Objects.Models.ZapperPriceStats">
+            <summary>
+            Price history and statistics
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperPriceStats.CoinGeckoId">
+            <summary>
+            CoinGecko Id
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperPriceStats.Name">
+            <summary>
+            Name
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperPriceStats.Symbol">
+            <summary>
+            Symbol
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperPriceStats.Link">
+            <summary>
+            Link
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperPriceStats.Address">
+            <summary>
+            Address
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperPriceStats.AllTimeHigh">
+            <summary>
+            All time high info
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperPriceStats.AllTimeLow">
+            <summary>
+            All time low info
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperPriceStats.MarketCap">
+            <summary>
+            Market cap in different currencies
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperPriceStats.MarketCapRank">
+            <summary>
+            Market cap rank
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperPriceStats.CirculatingSupply">
+            <summary>
+            Circulating supply
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperPriceStats.Volume24H">
+            <summary>
+            24H volume
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperPriceStats.PriceChange24H">
+            <summary>
+            Price change since 24 hours ago
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperPriceStats.PriceChangePercentage24H">
+            <summary>
+            Price percentage change since 24 hours ago
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperPriceStats.PriceChangePercentage7D">
+            <summary>
+            Price percentage change since 7 days ago
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperPriceStats.PriceChangePercentage30D">
+            <summary>
+            Price percentage change since 30 days ago
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperPriceStats.PriceChangePercentage1Y">
+            <summary>
+            Price percentage change since 1 year ago
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperPriceStats.Prices">
+            <summary>
+            Price data
+            </summary>
+        </member>
+        <member name="T:Zapper.Net.Objects.Models.ZapperTimePrice">
+            <summary>
+            Price on a specific time
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperTimePrice.Timestamp">
+            <summary>
+            The timestamp of the price
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperTimePrice.Price">
+            <summary>
+            The price at the time
+            </summary>
+        </member>
+        <member name="T:Zapper.Net.Objects.Models.ZapperPriceReference">
+            <summary>
+            Price stats
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperPriceReference.Dates">
+            <summary>
+            Timestamps this info is for for different currencies
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperPriceReference.Prices">
+            <summary>
+            The price in different currencies
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperPriceReference.Percentages">
+            <summary>
+            The percentage change now vs these prices
+            </summary>
+        </member>
+        <member name="T:Zapper.Net.Objects.Models.ZapperToken">
+            <summary>
+            Token info
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperToken.Address">
+            <summary>
+            Token address
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperToken.ChainId">
+            <summary>
+            Chain id
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperToken.Decimals">
+            <summary>
+            Max amount of decimals
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperToken.LogoURI">
+            <summary>
+            Logo URI
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperToken.Name">
+            <summary>
+            Token name
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperToken.Symbol">
+            <summary>
+            Token symbol
+            </summary>
+        </member>
+        <member name="T:Zapper.Net.Objects.Models.ZapperTokenPrice">
+            <summary>
+            Token price
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperTokenPrice.Address">
+            <summary>
+            Address
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperTokenPrice.Decimals">
+            <summary>
+            Max amount of decimals
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperTokenPrice.Symbol">
+            <summary>
+            Symbol
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperTokenPrice.Price">
+            <summary>
+            Price
+            </summary>
+        </member>
+        <member name="T:Zapper.Net.Objects.Models.ZapperTransaction">
+            <summary>
+            Transaction info
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperTransaction.Network">
+            <summary>
+            Network
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperTransaction.Hash">
+            <summary>
+            Hash
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperTransaction.BlockNumber">
+            <summary>
+            Block number
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperTransaction.Name">
+            <summary>
+            Name
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperTransaction.Direction">
+            <summary>
+            Direction
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperTransaction.Timestamp">
+            <summary>
+            Timestamp
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperTransaction.Symbol">
+            <summary>
+            Symbol
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperTransaction.Address">
+            <summary>
+            Address
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperTransaction.Quantity">
+            <summary>
+            Quantity transacted
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperTransaction.From">
+            <summary>
+            From address
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperTransaction.Destination">
+            <summary>
+            To address
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperTransaction.Contract">
+            <summary>
+            Contract
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperTransaction.SubTransactions">
+            <summary>
+            Sub transaction details
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperTransaction.Nonce">
+            <summary>
+            Nonace
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperTransaction.GasPrice">
+            <summary>
+            Gas price at the time
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperTransaction.GasLimit">
+            <summary>
+            Gas limit specified
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperTransaction.Input">
+            <summary>
+            Input
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperTransaction.Gas">
+            <summary>
+            Gas
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperTransaction.Successful">
+            <summary>
+            Successful
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperTransaction.Account">
+            <summary>
+            Account
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperTransaction.DestinationENS">
+            <summary>
+            Destination ENS
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperTransaction.AccountENS">
+            <summary>
+            Account ENS
+            </summary>
+        </member>
+        <member name="T:Zapper.Net.Objects.Models.ZapperSubTransaction">
+            <summary>
+            Sub transaction details
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperSubTransaction.Type">
+            <summary>
+            Transaction type
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperSubTransaction.Symbol">
+            <summary>
+            Symbol
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperSubTransaction.Quantity">
+            <summary>
+            Quantity
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperSubTransaction.Address">
+            <summary>
+            Address
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.ZapperClientOptions.ApiOptions">
+            <summary>
+            API options
+            </summary>
+        </member>
+        <member name="M:Zapper.Net.Objects.ZapperClientOptions.#ctor">
+            <summary>
+            ctor
+            </summary>
+        </member>
+        <member name="T:Zapper.Net.ZapperHelpers">
+            <summary>
+            Helper methods
+            </summary>
+        </member>
+        <member name="M:Zapper.Net.ZapperHelpers.AddBinance(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Zapper.Net.Objects.ZapperClientOptions})">
+            <summary>
+            Add the IZapperClient to the sevice collection so they can be injected
+            </summary>
+            <param name="services">The service collection</param>
+            <param name="defaultOptionsCallback">Set default options for the client</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -6,7 +6,7 @@ using CryptoExchange.Net;
 using CryptoExchange.Net.Authentication;
 using CryptoExchange.Net.Objects;
 
-namespace Zapper.Net.Objects
+namespace Zapper.Net
 {
     public class ZapperAuthenticationProvider : AuthenticationProvider
     {

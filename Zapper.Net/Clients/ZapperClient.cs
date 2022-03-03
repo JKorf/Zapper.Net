@@ -41,7 +41,7 @@ namespace Zapper.Net
             manualParseError = true;
             requestBodyEmptyContent = "";
             requestBodyFormat = RequestBodyFormat.FormData;
-            arraySerialization = ArrayParametersSerialization.MultipleValues;
+            arraySerialization = ArrayParametersSerialization.Array;
         }
         #endregion
 

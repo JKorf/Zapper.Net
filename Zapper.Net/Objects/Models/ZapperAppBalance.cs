@@ -1,38 +1,97 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Zapper.Net.Objects.Models
 {
+    /// <summary>
+    /// App balance info
+    /// </summary>
     public class ZapperAppBalance: ZapperModel
     {
-        public IEnumerable<ZapperAppBalanceMeta> Meta { get; set; }
-        public IEnumerable<ZapperProduct> Products { get; set; }
+        /// <summary>
+        /// Meta info on the balances
+        /// </summary>
+        public IEnumerable<ZapperAppBalanceMeta> Meta { get; set; } = Array.Empty<ZapperAppBalanceMeta>();
+        /// <summary>
+        /// Products
+        /// </summary>
+        public IEnumerable<ZapperProduct> Products { get; set; } = Array.Empty<ZapperProduct>();
     }
 
+    /// <summary>
+    /// Product info
+    /// </summary>
     public class ZapperProduct
     {
-        public string Label { get; set; }
-        public IEnumerable<ZapperProductAssets> Assets { get; set; }
+        /// <summary>
+        /// Label
+        /// </summary>
+        public string Label { get; set; } = string.Empty;
+        /// <summary>
+        /// Assets list
+        /// </summary>
+        public IEnumerable<ZapperProductAssets> Assets { get; set; } = Array.Empty<ZapperProductAssets>();
     }
 
+    /// <summary>
+    /// Asset info
+    /// </summary>
     public class ZapperProductAssets
     {
-        public string Type { get; set; }
-        public string Network { get; set; }
-        public string Address { get; set; }
+        /// <summary>
+        /// Asset type
+        /// </summary>
+        public string Type { get; set; } = string.Empty;
+        /// <summary>
+        /// Network
+        /// </summary>
+        public string Network { get; set; } = string.Empty;
+        /// <summary>
+        /// Address
+        /// </summary>
+        public string Address { get; set; } = string.Empty;
+        /// <summary>
+        /// Max decimal places
+        /// </summary>
         public int Decimals { get; set; }
-        public string Symbol { get; set; }
+        /// <summary>
+        /// Symbol
+        /// </summary>
+        public string Symbol { get; set; } = string.Empty;
+        /// <summary>
+        /// Price
+        /// </summary>
         public decimal Price { get; set; }
+        /// <summary>
+        /// Balance
+        /// </summary>
         public decimal Balance { get; set; }
-        public string BalanceRaw { get; set; }
+        /// <summary>
+        /// Balance raw
+        /// </summary>
+        public string BalanceRaw { get; set; } = string.Empty;
+        /// <summary>
+        /// Balance in USD value
+        /// </summary>
         public decimal BalanceUsd { get; set; }
     }
 
+    /// <summary>
+    /// Blance meta data
+    /// </summary>
     public class ZapperAppBalanceMeta
     {
-        public string Label { get; set; }
+        /// <summary>
+        /// Label
+        /// </summary>
+        public string Label { get; set; } = string.Empty;
+        /// <summary>
+        /// Balance value
+        /// </summary>
         public decimal Value { get; set; }
-        public string Type { get; set; }
+        /// <summary>
+        /// Balance type
+        /// </summary>
+        public string Type { get; set; } = string.Empty;
     }
 }

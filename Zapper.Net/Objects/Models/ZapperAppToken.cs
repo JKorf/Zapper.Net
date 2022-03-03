@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Zapper.Net.Objects.Models
+﻿namespace Zapper.Net.Objects.Models
 {
+    /// <summary>
+    /// App token
+    /// </summary>
     public class ZapperAppToken
     {
-        public string Address { get; set; }
-        public string Network { get; set; }
+        /// <summary>
+        /// Token address
+        /// </summary>
+        public string Address { get; set; } = string.Empty;
+        /// <summary>
+        /// Network
+        /// </summary>
+        public string Network { get; set; } = string.Empty;
     }
 }

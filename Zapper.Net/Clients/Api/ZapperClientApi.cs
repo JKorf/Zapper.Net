@@ -23,8 +23,6 @@ namespace Zapper.Net.Clients.Api
         public IZapperClientApiAddressData AddressData { get; }
         /// <inheritdoc />
         public IZapperClientApiGeneralData GeneralData { get; }
-        /// <inheritdoc />
-        public string ExchangeName => "Zapper";
         #endregion
 
         #region constructor/destructor
