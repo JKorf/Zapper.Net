@@ -12,6 +12,7 @@ using Zapper.Net.Objects;
 
 namespace Zapper.Net.Clients.Api
 {
+    /// <inheritdoc />
     public class ZapperClientApi : RestApiClient, IZapperClientApi
     {
         private readonly ZapperClient _baseClient;
@@ -37,16 +38,20 @@ namespace Zapper.Net.Clients.Api
         }
         #endregion
 
+        /// <inheritdoc />
         protected override AuthenticationProvider CreateAuthenticationProvider(ApiCredentials credentials)
         {
             return new ZapperAuthenticationProvider(credentials);
         }
 
+        /// <inheritdoc />
         public override TimeSpan GetTimeOffset() => TimeSpan.Zero;
 
+        /// <inheritdoc />
         protected override Task<WebCallResult<DateTime>> GetServerTimestampAsync() => 
             Task.FromResult(new WebCallResult<DateTime>(null, null, null, null, null, null, null, null, DateTime.UtcNow, null));
 
+        /// <inheritdoc />
         protected override TimeSyncInfo GetTimeSyncInfo()
             => new TimeSyncInfo(_log, Options.ApiOptions.AutoTimestamp, Options.ApiOptions.TimestampRecalculationInterval, new TimeSyncState("Zapper Api") { LastSyncTime = DateTime.UtcNow } );
 

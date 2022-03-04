@@ -6,23 +6,25 @@ using System.Threading.Tasks;
 using CryptoExchange.Net;
 using CryptoExchange.Net.Objects;
 using Zapper.Net.Interfaces.Clients.Api;
-using Zapper.Net.Objects.Internal;
 using Zapper.Net.Objects.Models;
 
 namespace Zapper.Net.Clients.Api
 {
+    /// <inheritdoc />
     public class ZapperClientApiAddressData : IZapperClientApiAddressData
     {
-        private ZapperClientApi _baseClient;
+        private readonly ZapperClientApi _baseClient;
 
-        public ZapperClientApiAddressData(ZapperClientApi baseClient)
+        internal ZapperClientApiAddressData(ZapperClientApi baseClient)
         {
             _baseClient = baseClient;
         }
 
+        /// <inheritdoc />
         public Task<WebCallResult<IEnumerable<ZapperNetworkAppList>>> GetSupportedAppBalancesAsync(string address, CancellationToken ct = default)
             => GetSupportedAppBalancesAsync(new string[] { address }, ct);
 
+        /// <inheritdoc />
         public Task<WebCallResult<IEnumerable<ZapperNetworkAppList>>> GetSupportedAppBalancesAsync(IEnumerable<string> addresses, CancellationToken ct = default)
         {
             var parameters = new Dictionary<string, object>()
@@ -33,9 +35,10 @@ namespace Zapper.Net.Clients.Api
             return _baseClient.SendRequestInternal<IEnumerable<ZapperNetworkAppList>>(_baseClient.GetUrl($"v1/protocols/balances/supported"), HttpMethod.Get, ct, parameters, true);
         }
 
+        /// <inheritdoc />
         public async Task<WebCallResult<ZapperAppBalance>> GetAppBalancesAsync(string appId, string address, string? network = null, CancellationToken ct = default)
         {
-            var result = await GetAppBalancesAsync(appId, new[] { address }, network, ct);
+            var result = await GetAppBalancesAsync(appId, new[] { address }, network, ct).ConfigureAwait(false);
             if(!result)
                 return result.As<ZapperAppBalance>(default);
 
@@ -45,7 +48,8 @@ namespace Zapper.Net.Clients.Api
             return result.As(val);
         }
 
-        public async Task<WebCallResult<Dictionary<string, ZapperAppBalance>>> GetAppBalancesAsync(string appId, IEnumerable<string> addresses, string? network = null, CancellationToken ct = default)
+        /// <inheritdoc />
+        public Task<WebCallResult<Dictionary<string, ZapperAppBalance>>> GetAppBalancesAsync(string appId, IEnumerable<string> addresses, string? network = null, CancellationToken ct = default)
         {
             var parameters = new Dictionary<string, object>()
             {
@@ -55,7 +59,7 @@ namespace Zapper.Net.Clients.Api
 
             parameters.AddOptionalParameter("network", network);
 
-            return await _baseClient.SendRequestInternal<Dictionary<string, ZapperAppBalance>>(_baseClient.GetUrl($"v1/apps/{appId}/balances"), HttpMethod.Get, ct, parameters, true);
+            return _baseClient.SendRequestInternal<Dictionary<string, ZapperAppBalance>>(_baseClient.GetUrl($"v1/apps/{appId}/balances"), HttpMethod.Get, ct, parameters, true);
         }
 
         // --- Returns data in SSE
@@ -83,6 +87,7 @@ namespace Zapper.Net.Clients.Api
         //    return _baseClient.SendRequestInternal<Dictionary<string, object>>(_baseClient.GetUrl($"v1/staked-balance/{balanceType}"), HttpMethod.Get, ct, parameters, true);
         //}
 
+        /// <inheritdoc />
         public Task<WebCallResult<ZapperResultWrapper<ZapperTransaction>>> GetTransactionsAsync(string address, CancellationToken ct = default)
         {
             var parameters = new Dictionary<string, object>()

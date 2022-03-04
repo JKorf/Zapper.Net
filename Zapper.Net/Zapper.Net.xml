@@ -4,10 +4,67 @@
         <name>Zapper.Net</name>
     </assembly>
     <members>
+        <member name="T:Zapper.Net.Clients.Api.ZapperClientApi">
+            <inheritdoc />
+        </member>
         <member name="P:Zapper.Net.Clients.Api.ZapperClientApi.AddressData">
             <inheritdoc />
         </member>
         <member name="P:Zapper.Net.Clients.Api.ZapperClientApi.GeneralData">
+            <inheritdoc />
+        </member>
+        <member name="M:Zapper.Net.Clients.Api.ZapperClientApi.CreateAuthenticationProvider(CryptoExchange.Net.Authentication.ApiCredentials)">
+            <inheritdoc />
+        </member>
+        <member name="M:Zapper.Net.Clients.Api.ZapperClientApi.GetTimeOffset">
+            <inheritdoc />
+        </member>
+        <member name="M:Zapper.Net.Clients.Api.ZapperClientApi.GetServerTimestampAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:Zapper.Net.Clients.Api.ZapperClientApi.GetTimeSyncInfo">
+            <inheritdoc />
+        </member>
+        <member name="T:Zapper.Net.Clients.Api.ZapperClientApiAddressData">
+            <inheritdoc />
+        </member>
+        <member name="M:Zapper.Net.Clients.Api.ZapperClientApiAddressData.GetSupportedAppBalancesAsync(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Zapper.Net.Clients.Api.ZapperClientApiAddressData.GetSupportedAppBalancesAsync(System.Collections.Generic.IEnumerable{System.String},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Zapper.Net.Clients.Api.ZapperClientApiAddressData.GetAppBalancesAsync(System.String,System.String,System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Zapper.Net.Clients.Api.ZapperClientApiAddressData.GetAppBalancesAsync(System.String,System.Collections.Generic.IEnumerable{System.String},System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Zapper.Net.Clients.Api.ZapperClientApiAddressData.GetTransactionsAsync(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:Zapper.Net.Clients.Api.ZapperClientApiGeneralData">
+            <inheritdoc />
+        </member>
+        <member name="M:Zapper.Net.Clients.Api.ZapperClientApiGeneralData.GetPricesAsync(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Zapper.Net.Clients.Api.ZapperClientApiGeneralData.GetUsdPricesAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Zapper.Net.Clients.Api.ZapperClientApiGeneralData.GetPriceStatsAsync(System.String,System.String,System.String,System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Zapper.Net.Clients.Api.ZapperClientApiGeneralData.GetAppAsync(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Zapper.Net.Clients.Api.ZapperClientApiGeneralData.GetAppsAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Zapper.Net.Clients.Api.ZapperClientApiGeneralData.GetFarmStatsAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Zapper.Net.Clients.Api.ZapperClientApiGeneralData.GetTokenListAsync(System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:Zapper.Net.ZapperClient">
@@ -644,6 +701,22 @@
             The percentage change now vs these prices
             </summary>
         </member>
+        <member name="T:Zapper.Net.Objects.Models.ZapperResultWrapper`1">
+            <summary>
+            Result wrapper
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperResultWrapper`1.Errors">
+            <summary>
+            Errors
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperResultWrapper`1.Data">
+            <summary>
+            Data
+            </summary>
+        </member>
         <member name="T:Zapper.Net.Objects.Models.ZapperToken">
             <summary>
             Token info
@@ -844,6 +917,16 @@
             Address
             </summary>
         </member>
+        <member name="T:Zapper.Net.Objects.ZapperClientOptions">
+            <summary>
+            Options for the ZapperClient
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.ZapperClientOptions.Default">
+            <summary>
+            Default options to use
+            </summary>
+        </member>
         <member name="P:Zapper.Net.Objects.ZapperClientOptions.ApiOptions">
             <summary>
             API options
@@ -853,6 +936,20 @@
             <summary>
             ctor
             </summary>
+        </member>
+        <member name="T:Zapper.Net.ZapperAuthenticationProvider">
+            <summary>
+            Authentication provider for the Zapper API
+            </summary>
+        </member>
+        <member name="M:Zapper.Net.ZapperAuthenticationProvider.#ctor(CryptoExchange.Net.Authentication.ApiCredentials)">
+            <summary>
+            ctor
+            </summary>
+            <param name="credentials"></param>
+        </member>
+        <member name="M:Zapper.Net.ZapperAuthenticationProvider.AuthenticateRequest(CryptoExchange.Net.RestApiClient,System.Uri,System.Net.Http.HttpMethod,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,CryptoExchange.Net.Objects.ArrayParametersSerialization,CryptoExchange.Net.Objects.HttpMethodParameterPosition,System.Collections.Generic.SortedDictionary{System.String,System.Object}@,System.Collections.Generic.SortedDictionary{System.String,System.Object}@,System.Collections.Generic.Dictionary{System.String,System.String}@)">
+            <inheritdoc />
         </member>
         <member name="T:Zapper.Net.ZapperHelpers">
             <summary>

@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CryptoExchange.Net.Objects;
+﻿using CryptoExchange.Net.Objects;
 
 namespace Zapper.Net.Objects
 {
+    /// <summary>
+    /// Options for the ZapperClient
+    /// </summary>
     public class ZapperClientOptions: BaseRestClientOptions
     {
+        /// <summary>
+        /// Default options to use
+        /// </summary>
         public static ZapperClientOptions Default { get; set; } = new ZapperClientOptions();
 
         private RestApiClientOptions _apiOptions = new RestApiClientOptions("https://api.zapper.fi/");
@@ -27,7 +30,7 @@ namespace Zapper.Net.Objects
         {
         }
 
-        public ZapperClientOptions(ZapperClientOptions baseOn): base(baseOn)
+        internal ZapperClientOptions(ZapperClientOptions baseOn): base(baseOn)
         {
             if (baseOn == null)
                 return;

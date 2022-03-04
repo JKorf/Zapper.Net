@@ -2,7 +2,6 @@
 using System.Threading;
 using System.Threading.Tasks;
 using CryptoExchange.Net.Objects;
-using Zapper.Net.Objects.Internal;
 using Zapper.Net.Objects.Models;
 
 namespace Zapper.Net.Interfaces.Clients.Api
