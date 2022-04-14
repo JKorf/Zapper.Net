@@ -35,6 +35,11 @@ namespace Zapper.Net.Clients.Api
 
             AddressData = new ZapperClientApiAddressData(this);
             GeneralData = new ZapperClientApiGeneralData(this);
+
+            manualParseError = true;
+            requestBodyEmptyContent = "";
+            requestBodyFormat = RequestBodyFormat.FormData;
+            arraySerialization = ArrayParametersSerialization.Array;
         }
         #endregion
 

@@ -37,11 +37,6 @@ namespace Zapper.Net
         public ZapperClient(ZapperClientOptions options) : base("Zapper", options)
         {
             Api = AddApiClient(new ZapperClientApi(log, this, options));
-
-            manualParseError = true;
-            requestBodyEmptyContent = "";
-            requestBodyFormat = RequestBodyFormat.FormData;
-            arraySerialization = ArrayParametersSerialization.Array;
         }
         #endregion
 
