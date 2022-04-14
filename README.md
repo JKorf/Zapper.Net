@@ -6,6 +6,9 @@ Zapper.Net is a wrapper around the Zapper API as described on [Zapper](https://a
 **If you think something is broken, something is missing or have any questions, please open an [Issue](https://github.com/JKorf/Zapper.Net/issues)**
 
 ## Release notes
+* Version 0.0.1-beta03 - 14 Apr 2022
+    * Updated CryptoExchange.Net
+
 * Version 0.0.1-beta02 - 10 Mar 2022
     * Updated CryptoExchange.Net
 
