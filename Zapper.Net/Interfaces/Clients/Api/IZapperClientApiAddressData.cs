@@ -45,7 +45,7 @@ namespace Zapper.Net.Interfaces.Clients.Api
         /// <param name="network">Filter by network</param>
         /// <param name="ct">Cancelation token</param>
         /// <returns></returns>
-        Task<WebCallResult<Dictionary<string, ZapperAppBalance>>> GetAppBalancesAsync(string appId, IEnumerable<string> addresses, string? network = null, CancellationToken ct = default);
+        Task<WebCallResult<ZapperAppBalances>> GetAppBalancesAsync(string appId, IEnumerable<string> addresses, string? network = null, CancellationToken ct = default);
 
         //Task<WebCallResult<ZapperBalances>> GetBalancesAsync(string address, CancellationToken ct = default);
 

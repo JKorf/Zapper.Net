@@ -4,9 +4,20 @@ using System.Collections.Generic;
 namespace Zapper.Net.Objects.Models
 {
     /// <summary>
+    /// Balance info
+    /// </summary>
+    public class ZapperAppBalances : ZapperModel
+    {
+        /// <summary>
+        /// Balance dictionary
+        /// </summary>
+        public Dictionary<string, ZapperAppBalance> Balances { get; set; } = new Dictionary<string, ZapperAppBalance>();
+    }
+
+    /// <summary>
     /// App balance info
     /// </summary>
-    public class ZapperAppBalance: ZapperModel
+    public class ZapperAppBalance
     {
         /// <summary>
         /// Meta info on the balances
