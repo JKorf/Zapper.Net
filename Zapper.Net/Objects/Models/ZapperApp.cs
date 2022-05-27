@@ -29,10 +29,6 @@ namespace Zapper.Net.Objects.Models
         /// </summary>
         public IEnumerable<ZapperAppNetwork> SupportedNetworks { get; set; } = Array.Empty<ZapperAppNetwork>();
         /// <summary>
-        /// Groups
-        /// </summary>
-        public Dictionary<string, string> Groups { get; set; } = new Dictionary<string, string>();
-        /// <summary>
         /// Primary color code
         /// </summary>
         public string PrimaryColor { get; set; } = string.Empty;

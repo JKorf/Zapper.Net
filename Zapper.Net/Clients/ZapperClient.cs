@@ -37,6 +37,11 @@ namespace Zapper.Net
         public ZapperClient(ZapperClientOptions options) : base("Zapper", options)
         {
             Api = AddApiClient(new ZapperClientApi(log, this, options));
+
+            StandardRequestHeaders = new Dictionary<string, string>
+            {
+                { "User-Agent", "Mozilla/5.0" }
+            };
         }
         #endregion
 

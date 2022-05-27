@@ -10,6 +10,9 @@
     <PackageVersion>0.0.1-beta03</PackageVersion>
     <AssemblyVersion>0.0.1</AssemblyVersion>
     <FileVersion>0.0.1-beta03</FileVersion>
+    <PackageVersion>0.0.1-beta4</PackageVersion>
+    <AssemblyVersion>0.0.1</AssemblyVersion>
+    <FileVersion>0.0.1-beta4</FileVersion>
     <Description>Zapper.Net is a .Net wrapper for the Zapper.fi API.</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageTags>Zapper Zapper.Net C# .Net CryptoCurrency Defi API wrapper</PackageTags>
@@ -20,7 +23,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <NeutralLanguage>en</NeutralLanguage>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageReleaseNotes>0.0.1-beta03 - Updated CryptoExchange.Net</PackageReleaseNotes>
+    <PackageReleaseNotes>0.0.1-beta4 - Initial fixes for API changes</PackageReleaseNotes>
   </PropertyGroup>
   <PropertyGroup Label="Deterministic Build" Condition="'$(Configuration)' == 'Release'">
     <PublishRepositoryUrl>true</PublishRepositoryUrl>

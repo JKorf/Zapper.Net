@@ -48,13 +48,13 @@ namespace Zapper.Net.Clients.Api
         /// <inheritdoc />
         public Task<WebCallResult<ZapperApp>> GetAppAsync(string appId, CancellationToken ct = default)
         {
-            return _baseClient.SendRequestInternal<ZapperApp>(_baseClient.GetUrl($"v1/apps-v3/{appId}"), HttpMethod.Get, ct, default, false);
+            return _baseClient.SendRequestInternal<ZapperApp>(_baseClient.GetUrl($"v1/apps-v3/{appId}"), HttpMethod.Get, ct, default, true);
         }
 
         /// <inheritdoc />
         public Task<WebCallResult<IEnumerable<ZapperApp>>> GetAppsAsync(CancellationToken ct = default)
         {
-            return _baseClient.SendRequestInternal<IEnumerable<ZapperApp>>(_baseClient.GetUrl("v1/apps-v3"), HttpMethod.Get, ct, default, false);
+            return _baseClient.SendRequestInternal<IEnumerable<ZapperApp>>(_baseClient.GetUrl("v2/apps"), HttpMethod.Get, ct, default, true);
         }
 
         /// <inheritdoc />

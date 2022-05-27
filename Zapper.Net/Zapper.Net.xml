@@ -256,11 +256,6 @@
             Supported networks
             </summary>
         </member>
-        <member name="P:Zapper.Net.Objects.Models.ZapperApp.Groups">
-            <summary>
-            Groups
-            </summary>
-        </member>
         <member name="P:Zapper.Net.Objects.Models.ZapperApp.PrimaryColor">
             <summary>
             Primary color code
@@ -279,6 +274,16 @@
         <member name="P:Zapper.Net.Objects.Models.ZapperApp.Disabled">
             <summary>
             Is disabled
+            </summary>
+        </member>
+        <member name="T:Zapper.Net.Objects.Models.ZapperAppBalances">
+            <summary>
+            Balance info
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperAppBalances.Balances">
+            <summary>
+            Balance dictionary
             </summary>
         </member>
         <member name="T:Zapper.Net.Objects.Models.ZapperAppBalance">

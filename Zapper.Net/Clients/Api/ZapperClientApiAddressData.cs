@@ -18,6 +18,7 @@ namespace Zapper.Net.Clients.Api
         internal ZapperClientApiAddressData(ZapperClientApi baseClient)
         {
             _baseClient = baseClient;
+
         }
 
         /// <inheritdoc />
@@ -42,24 +43,24 @@ namespace Zapper.Net.Clients.Api
             if(!result)
                 return result.As<ZapperAppBalance>(default);
 
-            if (!result.Data.TryGetValue(address, out var val))
+            if (!result.Data.Balances.TryGetValue(address, out var val))
                 return result.AsError<ZapperAppBalance>(new ServerError("No data for address returned"));
 
             return result.As(val);
         }
 
         /// <inheritdoc />
-        public Task<WebCallResult<Dictionary<string, ZapperAppBalance>>> GetAppBalancesAsync(string appId, IEnumerable<string> addresses, string? network = null, CancellationToken ct = default)
+        public Task<WebCallResult<ZapperAppBalances>> GetAppBalancesAsync(string appId, IEnumerable<string> addresses, string? network = null, CancellationToken ct = default)
         {
             var parameters = new Dictionary<string, object>()
             {
                 { "addresses", addresses.ToArray() },
-                { "newBalances", true }
             };
 
             parameters.AddOptionalParameter("network", network);
 
-            return _baseClient.SendRequestInternal<Dictionary<string, ZapperAppBalance>>(_baseClient.GetUrl($"v1/apps/{appId}/balances"), HttpMethod.Get, ct, parameters, true);
+            //return _baseClient.SendRequestInternal<Dictionary<string, ZapperAppBalance>>(_baseClient.GetUrl($"v1/apps/{appId}/balances"), HttpMethod.Get, ct, parameters, true);
+            return _baseClient.SendRequestInternal<ZapperAppBalances>(_baseClient.GetUrl($"v2/apps/{appId}/balances"), HttpMethod.Get, ct, parameters, true);
         }
 
         // --- Returns data in SSE
