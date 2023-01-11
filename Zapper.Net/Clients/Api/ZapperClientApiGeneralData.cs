@@ -25,13 +25,13 @@ namespace Zapper.Net.Clients.Api
             var parameters = new Dictionary<string, object>();
             parameters.AddOptionalParameter("network", network);
 
-            return _baseClient.SendRequestInternal<IEnumerable<ZapperTokenPrice>>(_baseClient.GetUrl("v1/prices"), HttpMethod.Get, ct, parameters, true);
+            return _baseClient.SendRequestInternal<IEnumerable<ZapperTokenPrice>>(_baseClient.GetUrl("v2/prices"), HttpMethod.Get, ct, parameters, true);
         }
 
         /// <inheritdoc />
         public Task<WebCallResult<Dictionary<string, decimal>>> GetUsdPricesAsync(CancellationToken ct = default)
         {
-            return _baseClient.SendRequestInternal<Dictionary<string, decimal>>(_baseClient.GetUrl("v1/fiat-rates"), HttpMethod.Get, ct, default, true);
+            return _baseClient.SendRequestInternal<Dictionary<string, decimal>>(_baseClient.GetUrl("v2/fiat-rates"), HttpMethod.Get, ct, default, true);
         }
 
         /// <inheritdoc />
@@ -42,13 +42,13 @@ namespace Zapper.Net.Clients.Api
             parameters.AddOptionalParameter("timeFrame", timeFrame);
             parameters.AddOptionalParameter("currency", currency);
 
-            return _baseClient.SendRequestInternal<ZapperPriceStats>(_baseClient.GetUrl("v1/prices/" + tokenAddress), HttpMethod.Get, ct, parameters, true);
+            return _baseClient.SendRequestInternal<ZapperPriceStats>(_baseClient.GetUrl("v2/prices/" + tokenAddress), HttpMethod.Get, ct, parameters, true);
         }
 
         /// <inheritdoc />
         public Task<WebCallResult<ZapperApp>> GetAppAsync(string appId, CancellationToken ct = default)
         {
-            return _baseClient.SendRequestInternal<ZapperApp>(_baseClient.GetUrl($"v1/apps-v3/{appId}"), HttpMethod.Get, ct, default, true);
+            return _baseClient.SendRequestInternal<ZapperApp>(_baseClient.GetUrl($"v2/apps-v3/{appId}"), HttpMethod.Get, ct, default, true);
         }
 
         /// <inheritdoc />
@@ -63,13 +63,13 @@ namespace Zapper.Net.Clients.Api
             var parameters = new Dictionary<string, object>();
             parameters.AddOptionalParameter("network", network);
 
-            return _baseClient.SendRequestInternal<IEnumerable<ZapperFarmStats>>(_baseClient.GetUrl($"v1/farms/{farmStatsType}"), HttpMethod.Get, ct, parameters, true);
+            return _baseClient.SendRequestInternal<IEnumerable<ZapperFarmStats>>(_baseClient.GetUrl($"v2/farms/{farmStatsType}"), HttpMethod.Get, ct, parameters, true);
         }
 
         /// <inheritdoc />
         public async Task<WebCallResult<IEnumerable<ZapperToken>>> GetTokenListAsync(CancellationToken ct = default)
         {
-            var result = await _baseClient.SendRequestInternal<ZapperTokenList>(_baseClient.GetUrl($"v1/token-list"), HttpMethod.Get, ct, default, true).ConfigureAwait(false);
+            var result = await _baseClient.SendRequestInternal<ZapperTokenList>(_baseClient.GetUrl($"v2/token-list"), HttpMethod.Get, ct, default, true).ConfigureAwait(false);
             return result.As(result.Data?.Tokens)!;
         }
     }
