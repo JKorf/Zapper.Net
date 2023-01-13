@@ -907,6 +907,11 @@
             Account
             </summary>
         </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperTransaction.FromENS">
+            <summary>
+            From ENS
+            </summary>
+        </member>
         <member name="P:Zapper.Net.Objects.Models.ZapperTransaction.DestinationENS">
             <summary>
             Destination ENS

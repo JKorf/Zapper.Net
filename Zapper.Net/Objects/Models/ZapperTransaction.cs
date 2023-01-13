@@ -94,6 +94,10 @@ namespace Zapper.Net.Objects.Models
         /// </summary>
         public string Account { get; set; } = string.Empty;
         /// <summary>
+        /// From ENS
+        /// </summary>
+        public string FromENS { get; set; } = string.Empty;
+        /// <summary>
         /// Destination ENS
         /// </summary>
         public string DestinationENS { get; set; } = string.Empty;
