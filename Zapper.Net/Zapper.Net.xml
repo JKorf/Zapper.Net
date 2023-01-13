@@ -326,6 +326,26 @@
             Asset type
             </summary>
         </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperProductAssets.AppId">
+            <summary>
+            App id
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperProductAssets.GroupId">
+            <summary>
+            Group id
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperProductAssets.Supply">
+            <summary>
+            Supply
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperProductAssets.PricePerShare">
+            <summary>
+            Price per share
+            </summary>
+        </member>
         <member name="P:Zapper.Net.Objects.Models.ZapperProductAssets.Network">
             <summary>
             Network
@@ -885,6 +905,11 @@
         <member name="P:Zapper.Net.Objects.Models.ZapperTransaction.Account">
             <summary>
             Account
+            </summary>
+        </member>
+        <member name="P:Zapper.Net.Objects.Models.ZapperTransaction.FromENS">
+            <summary>
+            From ENS
             </summary>
         </member>
         <member name="P:Zapper.Net.Objects.Models.ZapperTransaction.DestinationENS">

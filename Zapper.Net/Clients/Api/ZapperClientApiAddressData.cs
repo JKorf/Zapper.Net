@@ -33,7 +33,7 @@ namespace Zapper.Net.Clients.Api
                 { "addresses", addresses.ToArray() },
             };
 
-            return _baseClient.SendRequestInternal<IEnumerable<ZapperNetworkAppList>>(_baseClient.GetUrl($"v1/protocols/balances/supported"), HttpMethod.Get, ct, parameters, true);
+            return _baseClient.SendRequestInternal<IEnumerable<ZapperNetworkAppList>>(_baseClient.GetUrl($"v2/apps/balances/supported"), HttpMethod.Get, ct, parameters, true);
         }
 
         /// <inheritdoc />
@@ -59,7 +59,6 @@ namespace Zapper.Net.Clients.Api
 
             parameters.AddOptionalParameter("network", network);
 
-            //return _baseClient.SendRequestInternal<Dictionary<string, ZapperAppBalance>>(_baseClient.GetUrl($"v1/apps/{appId}/balances"), HttpMethod.Get, ct, parameters, true);
             return _baseClient.SendRequestInternal<ZapperAppBalances>(_baseClient.GetUrl($"v2/apps/{appId}/balances"), HttpMethod.Get, ct, parameters, true);
         }
 
@@ -72,7 +71,7 @@ namespace Zapper.Net.Clients.Api
         //        { "api_key", "96e0cc51-a62e-42ca-acee-910ea7d2a241" }
         //    };
 
-        //    return _baseClient.SendRequestInternal<ZapperBalances>(_baseClient.GetUrl("v1/balances-v3"), HttpMethod.Get, ct, parameters, false, sseEndpoint: true);
+        //    return _baseClient.SendRequestInternal<ZapperBalances>(_baseClient.GetUrl("v2/balances-v3"), HttpMethod.Get, ct, parameters, false, sseEndpoint: true);
         //}
 
         // --- Unknown return data
@@ -85,7 +84,7 @@ namespace Zapper.Net.Clients.Api
         //    };
         //    parameters.AddOptionalParameter("network", network);
 
-        //    return _baseClient.SendRequestInternal<Dictionary<string, object>>(_baseClient.GetUrl($"v1/staked-balance/{balanceType}"), HttpMethod.Get, ct, parameters, true);
+        //    return _baseClient.SendRequestInternal<Dictionary<string, object>>(_baseClient.GetUrl($"v2/staked-balance/{balanceType}"), HttpMethod.Get, ct, parameters, true);
         //}
 
         /// <inheritdoc />
@@ -97,7 +96,7 @@ namespace Zapper.Net.Clients.Api
                 { "address", address }
             };
 
-            return _baseClient.SendRequestInternal<ZapperResultWrapper<ZapperTransaction>>(_baseClient.GetUrl("v1/transactions"), HttpMethod.Get, ct, parameters, true);
+            return _baseClient.SendRequestInternal<ZapperResultWrapper<ZapperTransaction>>(_baseClient.GetUrl("v2/transactions"), HttpMethod.Get, ct, parameters, true);
         }
     }
 }

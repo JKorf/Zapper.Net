@@ -54,6 +54,22 @@ namespace Zapper.Net.Objects.Models
         /// </summary>
         public string Type { get; set; } = string.Empty;
         /// <summary>
+        /// App id
+        /// </summary>
+        public string AppId { get; set; } = string.Empty;
+        /// <summary>
+        /// Group id
+        /// </summary>
+        public string GroupId { get; set; } = string.Empty;
+        /// <summary>
+        /// Supply
+        /// </summary>
+        public int Supply { get; set; } = 0;
+        /// <summary>
+        /// Price per share
+        /// </summary>
+        public IEnumerable<decimal> PricePerShare { get; set; } = Array.Empty<decimal>();
+        /// <summary>
         /// Network
         /// </summary>
         public string Network { get; set; } = string.Empty;
